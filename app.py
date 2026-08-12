@@ -1,8 +1,8 @@
 """
 Customer Churn Prediction — Streamlit App
 ------------------------------------------
-Ye app trained Random Forest model (churn_model.pkl) load karke
-real-time mein kisi bhi customer ka churn risk predict karti hai.
+This app loads a trained Random Forest model (churn_model.pkl) and
+predicts a customer's churn risk in real time.
 
 Run:  streamlit run app.py
 
@@ -10,7 +10,7 @@ Required files in same folder:
   - churn_model.pkl
   - scaler.pkl
   - model_columns.pkl
-(Ye teeno files ChurnAnalysis notebook run karne ke baad generate honge)
+(These three files are generated after running the ChurnAnalysis notebook)
 """
 
 import streamlit as st
@@ -31,15 +31,15 @@ try:
     model, scaler, model_columns = load_artifacts()
 except FileNotFoundError:
     st.error(
-        "Model files nahi mile. Pehle `ChurnAnalysis_Enhanced.ipynb` run karo "
-        "(Colab/Jupyter mein) — usse `churn_model.pkl`, `scaler.pkl`, "
-        "aur `model_columns.pkl` generate honge. Unhe is app.py ke saath "
-        "same folder mein rakho."
+        "Model files not found. Please run `ChurnAnalysis_Enhanced.ipynb` "
+        "first (in Colab/Jupyter) — this will generate `churn_model.pkl`, "
+        "`scaler.pkl`, and `model_columns.pkl`. Place them in the same "
+        "folder as this app.py."
     )
     st.stop()
 
 st.title("📉 Customer Churn Predictor")
-st.write("Customer ki details daalo aur turant unka churn risk dekho — sath mein recommended retention action bhi milega.")
+st.write("Enter customer details below to instantly see their churn risk, along with a recommended retention action.")
 
 st.divider()
 
@@ -114,11 +114,11 @@ if st.button("🔍 Predict Churn Risk", type="primary", use_container_width=True
     st.subheader("📋 Recommended Action")
     if tenure <= 3 and contract == "Month-to-month":
         st.warning("⚠️ High-risk profile: new customer + month-to-month contract. "
-                    "→ Improve onboarding, offer discount for switching to a long-term plan.")
+                    "→ Improve onboarding, offer a discount for switching to a long-term plan.")
     elif proba >= 0.5:
-        st.warning("→ Send retention offer / personalized discount before customer churns.")
+        st.warning("→ Send a retention offer / personalized discount before the customer churns.")
     else:
-        st.success("→ Low risk. Continue standard engagement, consider upsell for high-value tier.")
+        st.success("→ Low risk. Continue standard engagement, consider an upsell for this high-value tier.")
 
 st.divider()
 st.caption("Model: Random Forest (class-balanced) | Trained on Telco Customer Churn dataset")
