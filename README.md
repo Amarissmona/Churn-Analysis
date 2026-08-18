@@ -2,7 +2,7 @@
 
 An end-to-end churn analytics project on the **Telco Customer Churn** dataset — from exploratory analysis to a deployed prediction app. Built to answer a real business question: *which customers are about to leave, and what should we do about it?*
 
-**🔗 Live Demo:** `[add your Streamlit Cloud link here after deploying]`
+**🔗 Live Demo:** `[https://churn-analysis-wxsyre6uwawcxr3h7qsdbh.streamlit.app/]`
 
 ---
 
